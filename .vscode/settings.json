@@ -1,0 +1,24 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "bin": true,
+        "build": true,
+        "html": true,
+        "lib": true
+    },
+    "doxdocgen.generic.authorTag": "@author zhongluqiang(zhong.rs232@gmail.com)",
+    "doxdocgen.generic.paramTemplate": "@param[] {param} ",
+    "doxdocgen.cpp.ctorText": "构造函数",
+    "doxdocgen.cpp.dtorText": "析构函数",
+    "doxdocgen.file.fileOrder": [
+        "file",
+        "author",
+        "brief",
+        "version",
+        "date"
+      ],
+}

@@ -33,3 +33,8 @@
 
 # doxygen output
 html
+
+# cmake output
+build
+lib
+bin

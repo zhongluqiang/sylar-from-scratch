@@ -1,0 +1,11 @@
+---
+Language:        Cpp
+BasedOnStyle:  LLVM
+IndentWidth: 4
+TabWidth: 4
+BreakConstructorInitializers: BeforeComma
+IndentCaseLabels: false
+AccessModifierOffset: -4
+AlignConsecutiveAssignments: true
+AlwaysBreakTemplateDeclarations: false
+ColumnLimit: 0
