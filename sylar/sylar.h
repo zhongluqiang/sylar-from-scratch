@@ -23,5 +23,9 @@
 
 #include "log.h"
 #include "util.h"
+#include "singleton.h"
+#include "mutex.h"
+#include "noncopyable.h"
+#include "macro.h"
 
 #endif

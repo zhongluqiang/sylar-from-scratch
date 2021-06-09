@@ -33,6 +33,7 @@ force_redefine_file_macro_for_sources(sylar)
 
 set(LIBS
     sylar
+    pthread
 )
 
 if(BUILD_TEST)
