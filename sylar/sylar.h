@@ -1,6 +1,5 @@
 /**
  * @file sylar.h
- * @author zhongluqiang(zhong.rs232@gmail.com)
  * @brief sylar all-in-one头文件，用于外部调用，本目录下的文件绝不应该包含这个头文件
  * @version 0.1
  * @date 2021-06-08

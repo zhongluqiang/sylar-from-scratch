@@ -25,6 +25,7 @@ option(BUILD_TEST "ON for complile test" ON)
 set(LIB_SRC
     sylar/log.cpp
     sylar/util.cpp
+    sylar/mutex.cc
     )
 
 add_library(sylar SHARED ${LIB_SRC})

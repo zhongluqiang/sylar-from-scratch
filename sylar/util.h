@@ -1,6 +1,5 @@
 /**
  * @file util.h
- * @author zhongluqiang(zhong.rs232@gmail.com)
  * @brief util函数
  * @version 0.1
  * @date 2021-06-08
