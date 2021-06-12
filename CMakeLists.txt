@@ -38,6 +38,7 @@ set(LIBS
 
 if(BUILD_TEST)
 sylar_add_executable(test_log "tests/test_log.cpp" sylar "${LIBS}")
+sylar_add_executable(test_util "tests/test_util.cpp" sylar "${LIBS}")
 endif()
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
