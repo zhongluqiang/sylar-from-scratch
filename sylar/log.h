@@ -397,7 +397,7 @@ public:
 
     /**
      * @brief 构造函数
-     * @param[] file 日志文件路径
+     * @param[in] file 日志文件路径
      */
     FileLogAppender(const std::string &file);
 
@@ -496,8 +496,8 @@ class LogEventWrap{
 public:
     /**
      * @brief 构造函数
-     * @param[] logger 日志器 
-     * @param[] event 日志事件
+     * @param[in] logger 日志器 
+     * @param[in] event 日志事件
      */
     LogEventWrap(Logger::ptr logger, LogEvent::ptr event);
 

@@ -161,32 +161,32 @@ public:
 
     /**
      * @brief 返回文件，即路径中最后一个/前面的部分，不包括/本身，如果未找到，则返回filename
-     * @param[] filename 文件完整路径
+     * @param[in] filename 文件完整路径
      * @return  文件路径
      */
     static std::string Dirname(const std::string &filename);
 
     /**
      * @brief 返回文件名，即路径中最后一个/后面的部分
-     * @param[] filename 文件完整路径
+     * @param[in] filename 文件完整路径
      * @return  文件名
      */
     static std::string Basename(const std::string &filename);
 
     /**
      * @brief 以只读方式打开
-     * @param[] ifs 文件流
-     * @param[] filename 文件名
-     * @param[] mode 打开方式
+     * @param[in] ifs 文件流
+     * @param[in] filename 文件名
+     * @param[in] mode 打开方式
      * @return  是否打开成功
      */
     static bool OpenForRead(std::ifstream &ifs, const std::string &filename, std::ios_base::openmode mode);
 
     /**
      * @brief 以只写方式打开
-     * @param[] ofs 文件流
-     * @param[] filename 文件名
-     * @param[] mode 打开方式
+     * @param[in] ofs 文件流
+     * @param[in] filename 文件名
+     * @param[in] mode 打开方式
      * @return  是否打开成功
      */
     static bool OpenForWrite(std::ofstream &ofs, const std::string &filename, std::ios_base::openmode mode);

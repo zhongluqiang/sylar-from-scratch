@@ -27,5 +27,6 @@
 #include "mutex.h"
 #include "noncopyable.h"
 #include "macro.h"
+#include "env.h"
 
 #endif

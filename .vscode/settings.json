@@ -15,6 +15,7 @@
     "doxdocgen.generic.includeTypeAtReturn": false,
     "doxdocgen.cpp.ctorText": "构造函数",
     "doxdocgen.cpp.dtorText": "析构函数",
+    "doxdocgen.generic.briefTemplate": "@brief ",
     "doxdocgen.file.fileOrder": [
         "file",
         "brief",
