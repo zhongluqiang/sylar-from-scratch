@@ -298,6 +298,11 @@ public:
      */
     std::ostream &format(std::ostream &os, LogEvent::ptr event);
 
+    /**
+     * @brief 获取pattern
+     */
+    std::string getPattern() const { return m_pattern; }
+
 public:
     /**
      * @brief 日志内容格式化项，虚基类，用于派生出不同的格式化项
@@ -361,6 +366,11 @@ public:
      */
     virtual void log(LogEvent::ptr event) = 0;
 
+    /**
+     * @brief 将日志输出目标的配置转成YAML String
+     */
+    virtual std::string toYamlString() = 0;
+
 protected:
     /// Mutex
     MutexType m_mutex;
@@ -386,6 +396,11 @@ public:
      * @brief 写入日志
      */
     void log(LogEvent::ptr event) override;
+
+    /**
+     * @brief 将日志输出目标的配置转成YAML String
+     */
+    std::string toYamlString() override;
 };
 
 /**
@@ -411,6 +426,11 @@ public:
      * @return 成功返回true
      */
     bool reopen();
+
+    /**
+     * @brief 将日志输出目标的配置转成YAML String
+     */
+    std::string toYamlString() override;
 
 private:
     /// 文件路径
@@ -475,6 +495,11 @@ public:
      * @brief 写日志
      */
     void log(LogEvent::ptr event);
+
+    /**
+     * @brief 将日志器的配置转成YAML String
+     */
+    std::string toYamlString();
 
 private:
     /// Mutex
@@ -545,6 +570,11 @@ public:
      * @brief 获取root日志器，等效于getLogger("root")
      */
     Logger::ptr getRoot() { return m_root; }
+
+    /**
+     * @brief 将所有的日志器配置转成YAML String
+     */
+    std::string toYamlString();
 
 private:
     /// Mutex

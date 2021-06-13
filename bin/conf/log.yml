@@ -1,0 +1,12 @@
+logs:
+    - name: root
+      level: info
+      appenders:
+          - type: StdoutLogAppender
+            pattern: "%d{%Y-%m-%d %H:%M:%S} %T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"
+    - name: system
+      level: info
+      appenders:
+          - type: StdoutLogAppender
+          - type: FileLogAppender
+            file: /root/sylar-from-scratch/system.txt

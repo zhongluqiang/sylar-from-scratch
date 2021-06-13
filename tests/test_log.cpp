@@ -11,7 +11,10 @@
 
 sylar::Logger::ptr g_logger = SYLAR_LOG_ROOT(); // 默认INFO级别
 
-int main() {
+int main(int argc, char *argv[]) {
+    sylar::EnvMgr::GetInstance()->init(argc, argv);
+    sylar::Config::LoadFromConfDir(sylar::EnvMgr::GetInstance()->getConfigPath());
+
     SYLAR_LOG_FATAL(g_logger) << "fatal msg";
     SYLAR_LOG_ERROR(g_logger) << "err msg";
     SYLAR_LOG_INFO(g_logger) << "info msg";
@@ -48,6 +51,10 @@ int main() {
 
     SYLAR_LOG_ERROR(test_logger) << "err msg";
     SYLAR_LOG_INFO(test_logger) << "info msg"; // 不打印
+
+    // 输出全部日志器的配置
+    g_logger->setLevel(sylar::LogLevel::INFO);
+    SYLAR_LOG_INFO(g_logger) << "logger config:" << sylar::LoggerMgr::GetInstance()->toYamlString();
 
     return 0;
 }
