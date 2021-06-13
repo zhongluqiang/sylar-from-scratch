@@ -25,6 +25,5 @@ clean:
 
 distclean:
 	rm build -fr
-	rm bin -fr
 	rm lib -fr
 	rm html -fr

@@ -37,4 +37,9 @@ html
 # cmake output
 build
 lib
-bin
+
+# bin
+test_config
+test_env
+test_log
+test_util

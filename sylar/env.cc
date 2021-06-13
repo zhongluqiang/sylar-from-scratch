@@ -3,8 +3,7 @@
  * @brief 环境变量管理接口实现
  * @version 0.1
  * @date 2021-06-13
- * @todo getAbsoluteWorkPath未实现
- * @todo 命令行参数解析应该用getopt系列接口实现，以合支持并选项和--开头的长选项
+ * @todo 命令行参数解析应该用getopt系列接口实现，以支持选项合并和--开头的长选项
  */
 #include "env.h"
 #include "sylar/log.h"
@@ -13,7 +12,7 @@
 #include <iomanip>
 #include <unistd.h>
 #include <stdlib.h>
-// #include "config.h"
+#include "config.h"
 
 namespace sylar {
 
@@ -132,17 +131,17 @@ std::string Env::getAbsolutePath(const std::string &path) const {
     return m_cwd + path;
 }
 
-// std::string Env::getAbsoluteWorkPath(const std::string& path) const {
-//     if(path.empty()) {
-//         return "/";
-//     }
-//     if(path[0] == '/') {
-//         return path;
-//     }
-//     static sylar::ConfigVar<std::string>::ptr g_server_work_path =
-//         sylar::Config::Lookup<std::string>("server.work_path");
-//     return g_server_work_path->getValue() + "/" + path;
-// }
+std::string Env::getAbsoluteWorkPath(const std::string& path) const {
+    if(path.empty()) {
+        return "/";
+    }
+    if(path[0] == '/') {
+        return path;
+    }
+    static sylar::ConfigVar<std::string>::ptr g_server_work_path =
+        sylar::Config::Lookup<std::string>("server.work_path");
+    return g_server_work_path->getValue() + "/" + path;
+}
 
 std::string Env::getConfigPath() {
     return getAbsolutePath(get("c", "conf"));

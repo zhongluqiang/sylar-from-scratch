@@ -11,6 +11,7 @@
 #include <sys/types.h>
 #include <stdint.h>
 #include <sys/time.h>
+#include <cxxabi.h> // for abi::__cxa_demangle()
 #include <string>
 #include <vector>
 #include <iostream>
@@ -210,6 +211,15 @@ public:
     /// atof，参考atof(3)
     static double Atof(const char *str);
 };
+
+/**
+ * @brief 获取T类型的类型字符串
+ */
+template <class T>
+const char *TypeToName() {
+    static const char *s_name = abi::__cxa_demangle(typeid(T).name(), nullptr, nullptr, nullptr);
+    return s_name;
+}
 
 } // namespace sylar
 

@@ -52,6 +52,33 @@ SYLAR_LOG_FMT_INFO(g_logger, "%s", "this is a log");
 待改进：
 使用getopt系列接口解析命令行选项与参数，这样可以支持解析选项合并和长选项，比如像"ps -auf"和"ps --help"。
 
+### 配置模块
+
+采用约定优于配置的思想。定义即可使用。支持变更通知功能。使用YAML文件做为配置内容，配置名称大小写不敏感。支持级别格式的数据类型，支持STL容器(vector,list,set,map等等),支持自定义类型的支持（需要实现序列化和反序列化方法)。
+
+使用方式如下：
+
+```cpp
+static sylar::ConfigVar<int>::ptr g_tcp_connect_timeout = 
+    sylar::Config::Lookup("tcp.connect.timeout", 5000, "tcp connect timeout");
+```
+
+定义了一个tcp连接超时参数，可以直接使用`g_tcp_connect_timeout->getValue()`获取参数的值，当配置修改重新加载，该值自动更新（并触发对应的值更新回调函数），上述配置格式如下：
+
+```yaml
+tcp:
+    connect:
+            timeout: 10000
+```
+
+与配置模块相关的类：
+
+`ConfigVarBase`: 配置参数基类，定义了一个配置参数的基本属性和方法，比如名称，描述，以及toString/fromString两个纯虚函数，配置参数的类型和值由继承类实现。
+
+`ConfigVar`: 配置参数类，这是一个模板类，有三个模板参数，一个是类型T，另外两个是FromStr和ToStr，这两个模板参数是仿函数，共中FromStr用于将字符串转类型T，ToStr用于将T转字符串。这两个仿函数通过一个类型转换模板类和不同的片特化类来实现不同类型的序列化与反序列化。ConfigVar类包含了一个T类型的配置参数值成员和一个变更回调函数数组，以及toString/fromString函数实现。toString/fromString用到了模板参数toStr/fromStr。此外，ConfigVar还提供了setValue/getValue方法用于设置/修改值，并触发回调函数数组，以及addListener/delListener方法用于添加或删除回调函数。
+
+`Config`: ConfigVar的管理类，负责托管全部的ConfigVar对象。提供Lookup方法，根据参数名称查询配置参数。如果调用Lookup查询时同时提供了默认值和配置描述信息，那么在未找到对应的配置时，会创建一个新的配置项，这样就保证了配置模块定义即可用的特性。除此外，Config类还提供了LoadFromYaml和LoadFromConfDir两个方法，用于从YAML结点或从命令行-c选项指定的配置文件路径中加载配置。Config的全部成员变量和方法都是static类型，保证了全局只有一个实例。
+
 ## 当前进度
 
 | 日期       | 进度       |
@@ -60,3 +87,4 @@ SYLAR_LOG_FMT_INFO(g_logger, "%s", "this is a log");
 | 2021.06.10 | 实现日志模块 |
 | 2021.06.12 | Util与Macro模块 |
 | 2021.06.13 | 环境变量模块 |
+| 2021.06.14 | 配置模块 |

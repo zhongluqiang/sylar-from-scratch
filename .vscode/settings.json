@@ -5,10 +5,9 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "bin": true,
         "build": true,
         "html": true,
-        "lib": true
+        "lib": true,
     },
     "doxdocgen.generic.authorTag": "@author zhongluqiang(zhong.rs232@gmail.com)",
     "doxdocgen.generic.paramTemplate": "@param[] {param} ",
@@ -88,6 +87,11 @@
         "thread": "cpp",
         "cinttypes": "cpp",
         "typeinfo": "cpp",
-        "bit": "cpp"
+        "bit": "cpp",
+        "strstream": "cpp",
+        "complex": "cpp",
+        "unordered_set": "cpp",
+        "iomanip": "cpp",
+        "cfenv": "cpp"
     },
 }
