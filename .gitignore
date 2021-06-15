@@ -46,3 +46,4 @@ test_util
 test_thread
 test_fiber
 test_fiber2
+test_scheduler

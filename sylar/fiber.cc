@@ -10,6 +10,7 @@
 #include "config.h"
 #include "log.h"
 #include "macro.h"
+#include "scheduler.h"
 
 namespace sylar {
 
@@ -82,9 +83,10 @@ Fiber::ptr Fiber::GetThis() {
 /**
  * 带参数的构造函数用于创建其他协程，需要分配栈
  */
-Fiber::Fiber(std::function<void()> cb, size_t stacksize)
+Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool run_in_scheduler)
     : m_id(s_fiber_id++)
-    , m_cb(cb) {
+    , m_cb(cb)
+    , m_runInScheduler(run_in_scheduler) {
     ++s_fiber_count;
     m_stacksize = stacksize ? stacksize : g_fiber_stack_size->getValue();
     m_stack     = StackAllocator::Alloc(m_stacksize);
@@ -149,8 +151,15 @@ void Fiber::resume() {
     SetThis(this);
     m_state = RUNNING;
 
-    if (swapcontext(&(t_thread_fiber->m_ctx), &m_ctx)) {
-        SYLAR_ASSERT2(false, "swapcontext");
+    // 如果协程参与调度器调度，那么应该和调度器的主协程进行swap，而不是线程主协程
+    if (m_runInScheduler) {
+        if (swapcontext(&(Scheduler::GetMainFiber()->m_ctx), &m_ctx)) {
+            SYLAR_ASSERT2(false, "swapcontext");
+        }
+    } else {
+        if (swapcontext(&(t_thread_fiber->m_ctx), &m_ctx)) {
+            SYLAR_ASSERT2(false, "swapcontext");
+        }
     }
 }
 
@@ -162,8 +171,15 @@ void Fiber::yield() {
         m_state = READY;
     }
 
-    if (swapcontext(&m_ctx, &(t_thread_fiber->m_ctx))) {
-        SYLAR_ASSERT2(false, "swapcontext");
+    // 如果协程参与调度器调度，那么应该和调度器的主协程进行swap，而不是线程主协程
+    if (m_runInScheduler) {
+        if (swapcontext(&m_ctx, &(Scheduler::GetMainFiber()->m_ctx))) {
+            SYLAR_ASSERT2(false, "swapcontext");
+        }
+    } else {
+        if (swapcontext(&m_ctx, &(t_thread_fiber->m_ctx))) {
+            SYLAR_ASSERT2(false, "swapcontext");
+        }
     }
 }
 

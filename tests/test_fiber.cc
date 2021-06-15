@@ -32,7 +32,7 @@ void test_fiber() {
     // 初始化线程主协程
     sylar::Fiber::GetThis();
 
-    sylar::Fiber::ptr fiber(new sylar::Fiber(run_in_fiber, 0));
+    sylar::Fiber::ptr fiber(new sylar::Fiber(run_in_fiber, 0, false));
     SYLAR_LOG_INFO(g_logger) << "use_count:" << fiber.use_count(); // 1
 
     SYLAR_LOG_INFO(g_logger) << "before test_fiber resume";
