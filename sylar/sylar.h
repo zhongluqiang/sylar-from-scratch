@@ -29,5 +29,6 @@
 #include "macro.h"
 #include "env.h"
 #include "config.h"
+#include "thread.h"
 
 #endif

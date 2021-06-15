@@ -439,6 +439,8 @@ private:
     std::ofstream m_filestream;
     /// 上次重打打开时间
     uint64_t m_lastTime = 0;
+    /// 文件打开错误标识
+    bool m_reopenError = false;
 };
 
 /**

@@ -79,6 +79,25 @@ tcp:
 
 `Config`: ConfigVar的管理类，负责托管全部的ConfigVar对象。提供Lookup方法，根据参数名称查询配置参数。如果调用Lookup查询时同时提供了默认值和配置描述信息，那么在未找到对应的配置时，会创建一个新的配置项，这样就保证了配置模块定义即可用的特性。除此外，Config类还提供了LoadFromYaml和LoadFromConfDir两个方法，用于从YAML结点或从命令行-c选项指定的配置文件路径中加载配置。Config的全部成员变量和方法都是static类型，保证了全局只有一个实例。
 
+### 线程模块
+
+线程模块，封装了pthread里面的一些常用功能，Thread,Semaphore,Mutex,RWMutex,Spinlock等对象，可以方便开发中对线程日常使用。为什么不适用c++11里面的thread 本框架是使用C++11开发，不使用thread，是因为thread其实也是基于pthread实现的。并且C++11里面没有提供读写互斥量，RWMutex，Spinlock等，在高并发场景，这些对象是经常需要用到的。所以选择了自己封装pthread。
+
+线程模块相关的类：
+
+`Thread`：线程类，构造函数传入线程入口函数和线程名称，线程入口函数类型为void()，如果带参数，则需要用std::bind进行绑定。线程类构造之后线程即开始运行，构造函数在线程真正开始运行之后返回。
+
+线程同步类（这部分被拆分到mutex.h)中：
+
+`Semaphore`: 计数信号量，基于sem_t实现
+`Mutex`: 互斥锁，基于pthread_mutex_t实现
+`RWMutex`: 读写锁，基于pthread_rwlock_t实现
+`Spinlock`: 自旋锁，基于pthread_spinlock_t实现
+`CASLock`: 原子锁，基于std::atomic_flag实现
+
+待改进：
+线程取消及线程清理
+
 ## 当前进度
 
 | 日期       | 进度       |
@@ -88,3 +107,4 @@ tcp:
 | 2021.06.12 | Util与Macro模块 |
 | 2021.06.13 | 环境变量模块 |
 | 2021.06.14 | 配置模块 |
+| 2021.06.15 | 线程模块 |
