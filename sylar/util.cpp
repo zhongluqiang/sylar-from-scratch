@@ -17,6 +17,7 @@
 #include <algorithm>  // for std::transform()
 #include "util.h"
 #include "log.h"
+#include "fiber.h"
 
 namespace sylar {
 
@@ -27,7 +28,7 @@ pid_t GetThreadId() {
 }
 
 uint64_t GetFiberId() {
-    return 0;
+    return Fiber::GetFiberId();
 }
 
 uint64_t GetElapsed() {

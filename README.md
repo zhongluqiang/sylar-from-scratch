@@ -87,16 +87,27 @@ tcp:
 
 `Thread`：线程类，构造函数传入线程入口函数和线程名称，线程入口函数类型为void()，如果带参数，则需要用std::bind进行绑定。线程类构造之后线程即开始运行，构造函数在线程真正开始运行之后返回。
 
-线程同步类（这部分被拆分到mutex.h)中：
+线程同步类（这部分被拆分到mutex.h)中：  
 
-`Semaphore`: 计数信号量，基于sem_t实现
-`Mutex`: 互斥锁，基于pthread_mutex_t实现
-`RWMutex`: 读写锁，基于pthread_rwlock_t实现
-`Spinlock`: 自旋锁，基于pthread_spinlock_t实现
-`CASLock`: 原子锁，基于std::atomic_flag实现
+`Semaphore`: 计数信号量，基于sem_t实现  
+`Mutex`: 互斥锁，基于pthread_mutex_t实现  
+`RWMutex`: 读写锁，基于pthread_rwlock_t实现  
+`Spinlock`: 自旋锁，基于pthread_spinlock_t实现  
+`CASLock`: 原子锁，基于std::atomic_flag实现  
 
 待改进：
 线程取消及线程清理
+
+### 协程模块
+
+协程：用户态的线程，相当于线程中的线程，更轻量级。后续配置socket hook，可以把复杂的异步调用，封装成同步操作。降低业务逻辑的编写复杂度。 目前该协程是基于ucontext_t来实现的，后续将支持采用boost.context里面的fcontext_t的方式实现。
+
+协程原语：
+
+`resume`：恢复，使协程进入执行状态  
+`yield`: 让出，协程让出执行权
+
+yield和resume是同步的，也就是，一个协程的resume必然对应另一个协程的yield，反之亦然，并且，一条线程同一时间只能有一个协程是执行状态。
 
 ## 当前进度
 
@@ -107,4 +118,4 @@ tcp:
 | 2021.06.12 | Util与Macro模块 |
 | 2021.06.13 | 环境变量模块 |
 | 2021.06.14 | 配置模块 |
-| 2021.06.15 | 线程模块 |
+| 2021.06.15 | 线程模块，协程模块 |

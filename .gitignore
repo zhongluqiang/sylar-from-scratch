@@ -44,3 +44,5 @@ test_env
 test_log
 test_util
 test_thread
+test_fiber
+test_fiber2

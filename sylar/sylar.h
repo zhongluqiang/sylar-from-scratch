@@ -30,5 +30,6 @@
 #include "env.h"
 #include "config.h"
 #include "thread.h"
+#include "fiber.h"
 
 #endif

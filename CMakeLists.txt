@@ -34,6 +34,7 @@ set(LIB_SRC
     sylar/env.cc
     sylar/config.cc
     sylar/thread.cc
+    sylar/fiber.cc
     )
 
 add_library(sylar SHARED ${LIB_SRC})
@@ -52,6 +53,8 @@ sylar_add_executable(test_util "tests/test_util.cpp" sylar "${LIBS}")
 sylar_add_executable(test_env "tests/test_env.cc" sylar "${LIBS}")
 sylar_add_executable(test_config "tests/test_config.cc" sylar "${LIBS}")
 sylar_add_executable(test_thread "tests/test_thread.cc" sylar "${LIBS}")
+sylar_add_executable(test_fiber "tests/test_fiber.cc" sylar "${LIBS}")
+sylar_add_executable(test_fiber2 "tests/test_fiber2.cc" sylar "${LIBS}")
 endif()
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
