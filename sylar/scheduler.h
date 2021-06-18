@@ -111,6 +111,12 @@ protected:
      */
     void setThis();
 
+    /**
+     * @brief 返回是否有空闲线程
+     * @details 当调度协程进入idle时空闲线程数加1，从idle协程返回时空闲线程数减1
+     */
+    bool hasIdleThreads() { return m_idleThreadCount > 0; }
+
 private:
     /**
      * @brief 添加调度任务，无锁
