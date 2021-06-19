@@ -9,12 +9,13 @@
 #define __SYLAR_IOMANAGER_H__
 
 #include "scheduler.h"
+#include "timer.h"
 
 namespace sylar {
 
 static sylar::Logger::ptr g_logger = SYLAR_LOG_NAME("system");
 
-class IOManager : public Scheduler {
+class IOManager : public Scheduler, public TimerManager {
 public:
     typedef std::shared_ptr<IOManager> ptr;
     typedef RWMutex RWMutexType;
@@ -158,6 +159,18 @@ protected:
      * @details 对于IO协程调度来说，应阻塞在等待IO事件上，idle退出的时机是epoll_wait返回，对应的操作是tickle或注册的IO事件发生
      */
     void idle() override;
+
+    /**
+     * @brief 判断是否可以停止，同时获取最近一个定时器的超时时间
+     * @param[out] timeout 最近一个定时器的超时时间，用于idle协程的epoll_wait
+     * @return 返回是否可以停止
+     */
+    bool stopping(uint64_t& timeout);
+
+    /**
+     * @brief 当有定时器插入到头部时，要重新更新epoll_wait的超时时间，这里是唤醒idle协程以便于使用新的超时时间
+     */
+    void onTimerInsertedAtFront() override;
 
     /**
      * @brief 重置socket句柄上下文的容器大小

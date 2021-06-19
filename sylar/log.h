@@ -39,7 +39,7 @@
 #define SYLAR_LOG_LEVEL(logger , level) \
     if(level <= logger->getLevel()) \
         sylar::LogEventWrap(logger, sylar::LogEvent::ptr(new sylar::LogEvent(logger->getName(), \
-            level, __FILE__, __LINE__, sylar::GetElapsed() - logger->getCreateTime(), \
+            level, __FILE__, __LINE__, sylar::GetElapsedMS() - logger->getCreateTime(), \
             sylar::GetThreadId(), sylar::GetFiberId(), time(0), sylar::GetThreadName()))).getLogEvent()->getSS()
 
 #define SYLAR_LOG_FATAL(logger) SYLAR_LOG_LEVEL(logger, sylar::LogLevel::FATAL)
@@ -66,7 +66,7 @@
 #define SYLAR_LOG_FMT_LEVEL(logger, level, fmt, ...) \
     if(level <= logger->getLevel()) \
         sylar::LogEventWrap(logger, sylar::LogEvent::ptr(new sylar::LogEvent(logger->getName(), \
-            level, __FILE__, __LINE__, sylar::GetElapsed() - logger->getCreateTime(), \
+            level, __FILE__, __LINE__, sylar::GetElapsedMS() - logger->getCreateTime(), \
             sylar::GetThreadId(), sylar::GetFiberId(), time(0), sylar::GetThreadName()))).getLogEvent()->printf(fmt, __VA_ARGS__)
 
 #define SYLAR_LOG_FMT_FATAL(logger, fmt, ...) SYLAR_LOG_FMT_LEVEL(logger, sylar::LogLevel::FATAL, fmt, __VA_ARGS__)
