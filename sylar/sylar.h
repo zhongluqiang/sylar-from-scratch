@@ -35,5 +35,8 @@
 #include "iomanager.h"
 #include "fd_manager.h"
 #include "hook.h"
+#include "endian.h"
+#include "address.h"
+#include "socket.h"
 
 #endif

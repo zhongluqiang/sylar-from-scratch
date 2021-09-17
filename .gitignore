@@ -50,6 +50,9 @@ test_scheduler
 test_iomanager
 test_timer
 test_hook
+test_address
+test_socket_tcp_server
+test_socket_tcp_client
 
 # log
 system.txt
