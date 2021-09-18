@@ -1,0 +1,2 @@
+tcp_server:
+  read_timeout: 120000

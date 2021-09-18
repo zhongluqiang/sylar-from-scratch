@@ -39,5 +39,6 @@
 #include "address.h"
 #include "socket.h"
 #include "bytearray.h"
+#include "tcp_server.h"
 
 #endif
