@@ -224,6 +224,12 @@ public:
     void setBody(const std::string& v) { m_body = v;}
 
     /**
+     * @brief 追加HTTP请求的消息体
+     * @param[in] v 追加内容
+     */
+    void appendBody(const std::string &v) { m_body.append(v); }
+
+    /**
      * @brief 是否自动关闭
      */
     bool isClose() const { return m_close;}
@@ -550,6 +556,12 @@ public:
      * @param[in] v 消息体
      */
     void setBody(const std::string& v) { m_body = v;}
+
+    /**
+     * @brief 追加HTTP请求的消息体
+     * @param[in] v 追加内容
+     */
+    void appendBody(const std::string &v) { m_body.append(v); }
 
     /**
      * @brief 设置响应原因

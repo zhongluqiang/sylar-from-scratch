@@ -41,5 +41,6 @@
 #include "bytearray.h"
 #include "tcp_server.h"
 #include "http/http.h"
+#include "sylar/http/http_parser.h"
 
 #endif

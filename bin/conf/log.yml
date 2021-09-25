@@ -10,3 +10,8 @@ logs:
           - type: StdoutLogAppender
           - type: FileLogAppender
             file: /root/sylar-from-scratch/system.txt
+    - name: http
+      level: debug
+      appenders:
+          - type: StdoutLogAppender
+            pattern: "%f:%l%T%m%n"
