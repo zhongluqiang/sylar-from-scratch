@@ -55,6 +55,7 @@ test_socket_tcp_server
 test_socket_tcp_client
 test_bytearray
 test_tcp_server 
+test_http
 
 # log
 system.txt
