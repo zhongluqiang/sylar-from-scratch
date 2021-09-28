@@ -37,7 +37,7 @@ public:
      * @brief 是否解析完成
      * @return 是否解析完成
      */
-    int isFinished();
+    int isFinished() const { return m_finished; }
 
     /**
      * @brief 设置是否解析完成
