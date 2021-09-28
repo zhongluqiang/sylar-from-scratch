@@ -463,6 +463,11 @@ public:
      * @brief 提取请求中的cookies
      */
     void initCookies();
+
+    /**
+     * @brief 初始化，实际是判断connection是否为keep-alive，以设置是否自动关闭套接字
+     */
+    void init();
 private:
     /// HTTP方法
     HttpMethod m_method;
