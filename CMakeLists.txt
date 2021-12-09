@@ -20,7 +20,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-function -Wno-builtin-macro-
 
 include_directories(.)
 
-option(BUILD_TEST "ON for complile test" OFF)
+option(BUILD_TEST "ON for complile test" ON)
 
 find_package(Boost REQUIRED) 
 if(Boost_FOUND)
@@ -53,6 +53,7 @@ set(LIB_SRC
     sylar/http/servlet.cc
     sylar/http/http_server.cc 
     sylar/uri.cc 
+    sylar/http/http_connection.cc 
     )
 
 add_library(sylar SHARED ${LIB_SRC})
@@ -86,6 +87,7 @@ sylar_add_executable(test_http "tests/test_http.cc" sylar "${LIBS}")
 sylar_add_executable(test_http_parser "tests/test_http_parser.cc" sylar "${LIBS}")
 sylar_add_executable(test_http_server "tests/test_http_server.cc" sylar "${LIBS}")
 sylar_add_executable(test_uri "tests/test_uri.cc" sylar "${LIBS}")
+sylar_add_executable(test_http_connection "tests/test_http_connection.cc" sylar "${LIBS}")
 endif()
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

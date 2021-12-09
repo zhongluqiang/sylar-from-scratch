@@ -59,6 +59,7 @@ test_http
 test_http_parser
 test_http_server
 test_uri
+test_http_connection
 
 # log
 system.txt

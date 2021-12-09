@@ -20,6 +20,7 @@
 | 2021.09.18 | Address类，Socket类，ByteArray类，TcpServer类 |
 | 2021.09.25 | HttpRequest类，HttpResponse类，HttpRequestParser类，HttpResponseParser类 |
 | 2021.09.28 | 实现HttpServer |
+| 2021.12.09 | HttpConnection类，HttpConnectionPool类 |
 
 ## 模块概述
 
