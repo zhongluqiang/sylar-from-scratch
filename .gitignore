@@ -60,6 +60,7 @@ test_http_parser
 test_http_server
 test_uri
 test_http_connection
+test_daemon
 
 # log
 system.txt

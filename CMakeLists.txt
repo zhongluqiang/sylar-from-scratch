@@ -54,6 +54,7 @@ set(LIB_SRC
     sylar/http/http_server.cc 
     sylar/uri.cc 
     sylar/http/http_connection.cc 
+    sylar/daemon.cc 
     )
 
 add_library(sylar SHARED ${LIB_SRC})
@@ -88,6 +89,7 @@ sylar_add_executable(test_http_parser "tests/test_http_parser.cc" sylar "${LIBS}
 sylar_add_executable(test_http_server "tests/test_http_server.cc" sylar "${LIBS}")
 sylar_add_executable(test_uri "tests/test_uri.cc" sylar "${LIBS}")
 sylar_add_executable(test_http_connection "tests/test_http_connection.cc" sylar "${LIBS}")
+sylar_add_executable(test_daemon "tests/test_daemon.cc" sylar "${LIBS}")
 endif()
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
