@@ -32,7 +32,8 @@ public:
      * @param[in] io_worker socket客户端工作的协程调度器
      * @param[in] accept_worker 服务器socket执行接收socket连接的协程调度器
      */
-    TcpServer(sylar::IOManager* io_woker = sylar::IOManager::GetThis()
+    TcpServer(sylar::IOManager* woker = sylar::IOManager::GetThis()
+              ,sylar::IOManager* io_woker = sylar::IOManager::GetThis()
               ,sylar::IOManager* accept_worker = sylar::IOManager::GetThis());
 
     /**
@@ -110,6 +111,8 @@ protected:
 protected:
     /// 监听Socket数组
     std::vector<Socket::ptr> m_socks;
+    /// 这个worker暂未使用，先预留着
+    IOManager* m_worker;
     /// 新连接的Socket工作的调度器
     IOManager* m_ioWorker;
     /// 服务器Socket接收连接的调度器

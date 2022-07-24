@@ -39,28 +39,8 @@ build
 lib
 
 # bin
-test_config
-test_env
-test_log
-test_util
-test_thread
-test_fiber
-test_fiber2
-test_scheduler
-test_iomanager
-test_timer
-test_hook
-test_address
-test_socket_tcp_server
-test_socket_tcp_client
-test_bytearray
-test_tcp_server 
-test_http
-test_http_parser
-test_http_server
-test_uri
-test_http_connection
-test_daemon
+bin/*
+!bin/conf
 
 # log
 system.txt

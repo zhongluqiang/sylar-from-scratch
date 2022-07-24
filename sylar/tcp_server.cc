@@ -10,9 +10,11 @@ static sylar::ConfigVar<uint64_t>::ptr g_tcp_server_read_timeout =
     sylar::Config::Lookup("tcp_server.read_timeout", (uint64_t)(60 * 1000 * 2),
             "tcp server read timeout");
 
-TcpServer::TcpServer(sylar::IOManager* io_worker,
-                    sylar::IOManager* accept_worker)
-    :m_ioWorker(io_worker)
+TcpServer::TcpServer(sylar::IOManager *worker,
+                     sylar::IOManager* io_worker,
+                     sylar::IOManager* accept_worker)
+    :m_worker(worker)
+    ,m_ioWorker(io_worker)
     ,m_acceptWorker(accept_worker)
     ,m_recvTimeout(g_tcp_server_read_timeout->getValue())
     ,m_name("sylar/1.0.0")

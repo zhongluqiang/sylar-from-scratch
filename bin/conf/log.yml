@@ -11,7 +11,7 @@ logs:
           - type: FileLogAppender
             file: /root/sylar-from-scratch/system.txt
     - name: http
-      level: debug
+      level: info
       appenders:
           - type: StdoutLogAppender
             pattern: "%f:%l%T%m%n"

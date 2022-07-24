@@ -12,7 +12,7 @@ HttpServer::HttpServer(bool keepalive
                ,sylar::IOManager* worker
                ,sylar::IOManager* io_worker
                ,sylar::IOManager* accept_worker)
-    :TcpServer(io_worker, accept_worker)
+    :TcpServer(worker, io_worker, accept_worker)
     ,m_isKeepalive(keepalive) {
     m_dispatch.reset(new ServletDispatch);
 
