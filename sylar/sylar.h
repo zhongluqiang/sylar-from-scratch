@@ -47,5 +47,9 @@
 #include "http/servlet.h"
 #include "http/http_server.h"
 #include "http/http_connection.h"
+#include "http/ws_server.h"
+#include "http/ws_session.h"
+#include "http/ws_connection.h"
+#include "http/ws_servlet.h"
 #include "daemon.h"
 #endif

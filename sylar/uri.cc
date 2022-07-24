@@ -96,7 +96,7 @@ const std::string &Uri::getPath() const {
 bool Uri::isDefaultPort() const {
     if (m_scheme == "http" || m_scheme == "ws") {
         return m_port == 80;
-    } else if (m_scheme == "https") {
+    } else if (m_scheme == "https" || m_scheme == "wss") {
         return m_port == 443;
     } else {
         return false;
