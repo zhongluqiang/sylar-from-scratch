@@ -103,6 +103,7 @@ sylar_add_executable(test_http_connection "tests/test_http_connection.cc" sylar 
 sylar_add_executable(test_daemon "tests/test_daemon.cc" sylar "${LIBS}")
 sylar_add_executable(test_ws_client "tests/test_ws_client.cc" sylar "${LIBS}")
 sylar_add_executable(test_ws_server "tests/test_ws_server.cc" sylar "${LIBS}")
+sylar_add_executable(test_ws_web_server "tests/test_ws_web_server.cc" sylar "${LIBS}")
 endif()
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
