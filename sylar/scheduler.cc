@@ -164,10 +164,20 @@ void Scheduler::run() {
 
                 // 找到一个未指定线程，或是指定了当前线程的任务
                 SYLAR_ASSERT(it->fiber || it->cb);
-                if (it->fiber) {
-                    // 任务队列时的协程一定是READY状态，谁会把RUNNING或TERM状态的协程加入调度呢？
-                    SYLAR_ASSERT(it->fiber->getState() == Fiber::READY);
+
+                // if (it->fiber) {
+                //     // 任务队列时的协程一定是READY状态，谁会把RUNNING或TERM状态的协程加入调度呢？
+                //     SYLAR_ASSERT(it->fiber->getState() == Fiber::READY);
+                // }
+
+                // [BUG FIX]: hook IO相关的系统调用时，在检测到IO未就绪的情况下，会先添加对应的读写事件，再yield当前协程，等IO就绪后再resume当前协程
+                // 多线程高并发情境下，有可能发生刚添加事件就被触发的情况，如果此时当前协程还未来得及yield，则这里就有可能出现协程状态仍为RUNNING的情况
+                // 这里简单地跳过这种情况，以损失一点性能为代价，否则整个协程框架都要大改
+                if(it->fiber && it->fiber->getState() == Fiber::RUNNING) {
+                    ++it;
+                    continue;
                 }
+                
                 // 当前调度线程找到一个任务，准备开始调度，将其从任务队列中剔除，活动线程数加1
                 task = *it;
                 m_tasks.erase(it++);

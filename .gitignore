@@ -39,17 +39,8 @@ build
 lib
 
 # bin
-test_config
-test_env
-test_log
-test_util
-test_thread
-test_fiber
-test_fiber2
-test_scheduler
-test_iomanager
-test_timer
-test_hook
+bin/*
+!bin/conf
 
 # log
 system.txt
