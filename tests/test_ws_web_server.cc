@@ -25,8 +25,8 @@ int32_t handleChat(sylar::http::HttpRequest::ptr req, sylar::http::HttpResponse:
         function write_msg(msg) {
             document.getElementById("message").innerHTML += msg + "<br/>";
         }
-        // 网页加载完成后自动连接websocket
-        window.onload = function() {
+        // 点击连接WebSocket服务器
+        function connect() {
             websocket = new WebSocket("ws://localhost:8021/chat");
 
             websocket.onerror = function() {
@@ -34,7 +34,7 @@ int32_t handleChat(sylar::http::HttpRequest::ptr req, sylar::http::HttpResponse:
             };
 
             websocket.onopen = function() {
-                write_msg("WebSocket连接成功");
+                write_msg("WebSocket服务器连接成功");
             };
 
             websocket.onmessage= function(msg) {
@@ -53,6 +53,7 @@ int32_t handleChat(sylar::http::HttpRequest::ptr req, sylar::http::HttpResponse:
         }
     </script>
     <body>
+        <button onclick="connect()">连接服务器</button><br/>
         <input id="msg" type="text"/><button onclick="sendmsg()">发送</button><br/>
         <div id="message">
         </div>
