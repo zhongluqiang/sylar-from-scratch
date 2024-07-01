@@ -4,6 +4,12 @@
 
 在线文档：[从零开始重写sylar C++高性能分布式服务器框架](https://www.midlane.top/wiki/pages/viewpage.action?pageId=10060952)。
 
+# QQ交流群
+> [!CAUTION]
+> 该项目原QQ群已毁于傻逼管理员，sylar本人亦数年未在群内发言，如果你想沟通技术结交朋友，欢迎加入本人创建的技术交流群。
+
+![image](qq.jpg)
+
 ## 当前进度
 
 | 日期       | 进度       |
