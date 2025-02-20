@@ -702,7 +702,7 @@ struct LogIniter {
                 } else {
                     if(!(i == *it)) {
                         // 修改的logger
-                        logger == SYLAR_LOG_NAME(i.name);
+                        logger = SYLAR_LOG_NAME(i.name);
                     } else {
                         continue;
                     }

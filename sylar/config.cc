@@ -13,7 +13,7 @@
 
 namespace sylar {
 
-static sylar::Logger::ptr g_logger = SYLAR_LOG_NAME("system");
+static sylar::Logger::ptr g_logger = SYLAR_LOG_ROOT();
 
 ConfigVarBase::ptr Config::LookupBase(const std::string &name) {
     RWMutexType::ReadLock lock(GetMutex());
