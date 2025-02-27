@@ -398,6 +398,7 @@ StdoutLogAppender::StdoutLogAppender()
 }
 
 void StdoutLogAppender::log(LogEvent::ptr event) {
+    MutexType::Lock lock(m_mutex);
     if(m_formatter) {
         m_formatter->format(std::cout, event);
     } else {
