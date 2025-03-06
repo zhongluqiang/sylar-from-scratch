@@ -166,17 +166,18 @@ void Fiber::resume() {
 void Fiber::yield() {
     /// 协程运行完之后会自动yield一次，用于回到主协程，此时状态已为结束状态
     SYLAR_ASSERT(m_state == RUNNING || m_state == TERM);
-    SetThis(t_thread_fiber.get());
     if (m_state != TERM) {
         m_state = READY;
     }
 
     // 如果协程参与调度器调度，那么应该和调度器的主协程进行swap，而不是线程主协程
     if (m_runInScheduler) {
+        SetThis(Scheduler::GetMainFiber());
         if (swapcontext(&m_ctx, &(Scheduler::GetMainFiber()->m_ctx))) {
             SYLAR_ASSERT2(false, "swapcontext");
         }
     } else {
+        SetThis(t_thread_fiber.get());
         if (swapcontext(&m_ctx, &(t_thread_fiber->m_ctx))) {
             SYLAR_ASSERT2(false, "swapcontext");
         }
